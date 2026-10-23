@@ -19,8 +19,8 @@
             max-width: 400px;
             margin: auto;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px #0002;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px #0004;
         }
 
         input, button {
@@ -50,7 +50,15 @@
 </head>
 
 <body>
-<div class="contenedor">
+
+<h1>Menú de ejercicios</h1>
+
+<ul>
+    <li><a href="#calificacion">Ejercicio 1: Calificación escolar</a></li>
+    <li><a href="#descanso">Ejercicio 2: Día de descanso</a></li>
+</ul>
+
+<div class="contenedor" id="calificacion">
     <h1>Calificación escolar</h1>
     <p>Introduce una calificación entera [1, 100]:</p>
 
@@ -58,9 +66,22 @@
            step="1" placeholder="Escribe una calificación">
     <br>
 
-    <button onclick="clasificar()">Clasificar</button>
+    <button onclick="clasificar()">Clasificar calificación</button>
 
     <p id="resultado"></p>
+</div>
+<p>&nbsp;</p>
+<div class="contenedor" id="descanso">
+    <h1>Día de descanso</h1>
+    <p>Introduce un número entero [1-lunes, ..., 7-domingo]:</p>
+
+    <input type="number" id="numeroDia"
+           step="1" placeholder="Escribe un número">
+    <br>
+
+    <button onclick="clasificarDia()">Clasificar día</button>
+
+    <p id="resultadoDia"></p>
 </div>
 
 <script>
@@ -72,7 +93,7 @@
       resultado.textContent =
         "Introduce una califcación válida.";
     } else {
-      c = Number(numero);
+      d = Number(numero);
       if (c>=90 && c <= 100) {
         resultado.textContent = "Excelente";
       } else if (c>=80 && c<90){
@@ -83,6 +104,25 @@
         resultado.textContent = "Reprobado";
       } else {
         resultado.textContent = "Calificación fuera de rango";
+      }
+    }
+  }
+
+  function clasificarDia() {
+    let numero = document.getElementById("numeroDia").value;
+    let resultado = document.getElementById("resultadoDia");
+
+    if (numero === "" || !Number.isSafeInteger(Number(numero))) {
+      resultado.textContent =
+        "Introduce un día válido.";
+    } else {
+      d = Number(numero);
+      if (d>=1 && d <= 5) {
+        resultado.textContent = "Día entre semana";
+      } else if (d>=6 && d<=7){
+        resultado.textContent = "Fin de semana";
+      } else {
+        resultado.textContent = "Día incorrecto.";
       }
     }
   }

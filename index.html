@@ -7,7 +7,7 @@
     <title>Ejercicios de repaso</title>
 
     <style>
-        body {
+        .principal {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #eef2ff;
@@ -18,6 +18,7 @@
             background: white;
             max-width: 400px;
             margin: auto;
+            margin-top: 30px;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 12px #0004;
@@ -41,6 +42,18 @@
             cursor: pointer;
         }
 
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px;
+            align-content: flex-start;
+        }
+
+        li {
+            margin-bottom: 10px;
+            align-self: flex-start;
+        }
+
         #resultado {
             font-size: 20px;
             font-weight: bold;
@@ -49,14 +62,17 @@
     </style>
 </head>
 
-<body>
+<body class="principal">
 
 <h1>Menú de ejercicios</h1>
 
 <ul>
     <li><a href="#calificacion">Ejercicio 1: Calificación escolar</a></li>
     <li><a href="#descanso">Ejercicio 2: Día de descanso</a></li>
+    <li><a href="#estacionamiento">Ejercicio 3: Costo de estacionamiento</a></li>
 </ul>
+
+<hr>
 
 <div class="contenedor" id="calificacion">
     <h1>Calificación escolar</h1>
@@ -84,6 +100,20 @@
     <p id="resultadoDia"></p>
 </div>
 
+<p>&nbsp;</p>
+<div class="contenedor" id="estacionamiento">
+    <h1>Costo de estacionamiento</h1>
+    <p>Introduce el número de horas:</p>
+
+    <input type="number" id="numeroHoras"
+           step="1" placeholder="Escribe un número">
+    <br>
+
+    <button onclick="calcularEstacionamiento()">Calcular el costo</button>
+
+    <p id="resultadoEstacionamiento"></p>
+</div>
+
 <script>
   function clasificar() {
     let numero = document.getElementById("numero").value;
@@ -93,7 +123,7 @@
       resultado.textContent =
         "Introduce una califcación válida.";
     } else {
-      d = Number(numero);
+      horas = Number(numero);
       if (c>=90 && c <= 100) {
         resultado.textContent = "Excelente";
       } else if (c>=80 && c<90){
@@ -116,13 +146,35 @@
       resultado.textContent =
         "Introduce un día válido.";
     } else {
-      d = Number(numero);
+      horas = Number(numero);
       if (d>=1 && d <= 5) {
         resultado.textContent = "Día entre semana";
       } else if (d>=6 && d<=7){
         resultado.textContent = "Fin de semana";
       } else {
         resultado.textContent = "Día incorrecto.";
+      }
+    }
+  }
+
+  function calcularEstacionamiento() {
+    let numero = document.getElementById("numeroHoras").value;
+    let resultado = document.getElementById("resultadoEstacionamiento");
+
+    if (numero === "" || !Number.isSafeInteger(Number(numero))) {
+      resultado.textContent =
+        "Introduce un día válido.";
+    } else {
+      horas = Number(numero);
+      if (horas>0 && horas <= 1) {
+        resultado.textContent = "Es costo es de $20.00";
+      } else if (horas>1 && horas<=3){
+        resultado.textContent = "Es costo es de $45.00";
+      } else if (horas > 3) {
+        resultado.textContent = "Es costo es de $70.00";;
+      } else
+      {
+        resultado.textContent = "No se permiten horas negativas o cero.";
       }
     }
   }

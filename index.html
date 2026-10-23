@@ -70,6 +70,8 @@
     <li><a href="#calificacion">Ejercicio 1: Calificación escolar</a></li>
     <li><a href="#descanso">Ejercicio 2: Día de descanso</a></li>
     <li><a href="#estacionamiento">Ejercicio 3: Costo de estacionamiento</a></li>
+    <li><a href="#calculadora">Ejercicio 4: Calculadora básica</a></li>
+    <li><a href="#triangulo">Ejercicio 5: Determinar tipo de triángulo</a></li>
 </ul>
 
 <hr>
@@ -114,6 +116,49 @@
     <p id="resultadoEstacionamiento"></p>
 </div>
 
+<p>&nbsp;</p>
+<div class="contenedor" id="calculadora">
+    <h1>Calculadora básica</h1>
+    <p>Valores:</p>
+    <input type="number" id="numeroA"
+           step="1" placeholder="Escribe el primer número">
+    <br>
+    <input type="number" id="numeroB"
+           step="1" placeholder="Escribe el segundo número">
+
+    <p>Operación:</p>
+    <select id="operacion">
+      <option value="1">1. Sumar</option>
+      <option value="2">2. Restar</option>
+      <option value="3">3. Multiplicar</option>
+      <option value="4">4. Dividir</option>
+    </select>
+    <br>
+
+    <button onclick="calcularOperacion()">Calcular el resultado</button>
+
+    <p id="resultadoCalculadora"></p>
+</div>
+
+<p>&nbsp;</p>
+<div class="contenedor" id="triangulo">
+    <h1>Determinar el tipo de triángulo</h1>
+    <p>Lados:</p>
+    <input type="number" id="ladoA"
+           step="1" placeholder="Escribe el primer lado">
+    <br>
+    <input type="number" id="ladoB"
+           step="1" placeholder="Escribe el segundo lado">
+    <br>
+    <input type="number" id="ladoC"
+           step="1" placeholder="Escribe el tercer lado">
+    <br>
+
+    <button onclick="calcularTriangulo()">Calcular el tipo de triángulo</button>
+
+    <p id="resultadoTriangulo"></p>
+</div>
+
 <script>
   function clasificar() {
     let numero = document.getElementById("numero").value;
@@ -121,7 +166,7 @@
 
     if (numero === "" || !Number.isSafeInteger(Number(numero))) {
       resultado.textContent =
-        "Introduce una califcación válida.";
+        "Introduce una calificación válida.";
     } else {
       horas = Number(numero);
       if (c>=90 && c <= 100) {
@@ -163,7 +208,7 @@
 
     if (numero === "" || !Number.isSafeInteger(Number(numero))) {
       resultado.textContent =
-        "Introduce un día válido.";
+        "Introduce horas válidas.";
     } else {
       horas = Number(numero);
       if (horas>0 && horas <= 1) {
@@ -178,6 +223,79 @@
       }
     }
   }
+
+  function calcularOperacion() {
+    let numeroA = document.getElementById("numeroA").value;
+    let numeroB = document.getElementById("numeroB").value;
+    let operacion = document.getElementById("operacion").value;
+    let resultado = document.getElementById("resultadoCalculadora");
+
+    if (numeroA === "" || !Number.isSafeInteger(Number(numeroA)) ||
+        numeroB === "" || !Number.isSafeInteger(Number(numeroB)) ||
+        operacion === "" ) {
+      resultado.textContent =
+        "Introduce datos válidos.";
+    } else {
+      a = Number(numeroA);
+      b = Number(numeroB);
+      op = Number(operacion);
+
+      switch (op) {
+        case 1:
+          resultado.textContent = `${a} + ${b} = ${a + b}`;
+          break;
+        case 2:
+          resultado.textContent = `${a} - ${b} = ${a - b}`;
+          break;
+        case 3:
+          resultado.textContent = `${a} * ${b} = ${a * b}`;
+          break;
+        case 4:
+          resultado.textContent = `${a} / ${b} = ${a / b}`;
+          break;
+      }
+    }
+  }
+
+  function calcularTriangulo() {
+    let ladoA = document.getElementById("ladoA").value;
+    let ladoB = document.getElementById("ladoB").value;
+    let ladoC = document.getElementById("ladoC").value;
+
+    let resultado = document.getElementById("resultadoTriangulo");
+
+    if (ladoA === "" || !Number.isSafeInteger(Number(ladoA))
+      || ladoB === "" || !Number.isSafeInteger(Number(ladoB))
+      || ladoC === "" || !Number.isSafeInteger(Number(ladoC)) ) {
+      resultado.textContent =
+        "Introduce datos válidos.";
+    } else {
+      a = Number(ladoA);
+      b = Number(ladoB);
+      c = Number(ladoC);
+
+      if (a <= 0 || b <= 0 || c <= 0) {
+        resultado.textContent =
+          "Introduce datos válidos (positivos).";
+        return;
+      }
+      // prueba si los lados forman un triángulo válido
+      if (a + b <= c || a + c <= b || b + c <= a) {
+        resultado.textContent =
+          "Los lados no forman un triángulo válido.";
+        return;
+      }
+
+      if (a === b && a === c) {
+        resultado.textContent = "El triángulo es equilátero.";
+      } else if (a === b || a === c || b === c) {
+        resultado.textContent = "El triángulo es isósceles.";
+      } else {
+        resultado.textContent = "El triángulo es escaleno.";
+      }
+    }
+  }
+
 </script>
 </body>
 </html>

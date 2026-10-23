@@ -51,31 +51,39 @@
 
 <body>
 <div class="contenedor">
-    <h1>¿Par o impar?</h1>
-    <p>Introduce un número entero:</p>
+    <h1>Calificación escolar</h1>
+    <p>Introduce una califiación entera [1, 100]:</p>
 
     <input type="number" id="numero"
-           step="1" placeholder="Escribe un número">
-
+           step="1" placeholder="Escribe una calificación">
     <br>
 
-    <button onclick="comprobar()">Comprobar</button>
+    <button onclick="clasificar()">Clasificar</button>
 
     <p id="resultado"></p>
 </div>
 
 <script>
-  function comprobar() {
+  function clasificar() {
     let numero = document.getElementById("numero").value;
     let resultado = document.getElementById("resultado");
 
     if (numero === "" || !Number.isSafeInteger(Number(numero))) {
       resultado.textContent =
-        "Introduce un número entero válido.";
-    } else if (Number(numero) % 2 === 0) {
-      resultado.textContent = "El número es PAR.";
+        "Introduce una califcación válida.";
     } else {
-      resultado.textContent = "El número es IMPAR.";
+      c = Number(numero);
+      if (c>=90 && c <= 100) {
+        resultado.textContent = "Excelente";
+      } else if (c>=80 && c<90){
+        resultado.textContent = "Muy bien";
+      } else if (c>=60 && c<80){
+        resultado.textContent = "Aprobado";
+      } else if (c<60 && c>=0){
+        resultado.textContent = "Reprobado";
+      } else {
+        resultado.textContent = "Calificación fuera de rango";
+      }
     }
   }
 </script>

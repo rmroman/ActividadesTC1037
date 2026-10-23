@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Par o impar</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #eef2ff;
+            padding: 50px 20px;
+        }
+
+        .contenedor {
+            background: white;
+            max-width: 400px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px #0002;
+        }
+
+        input, button {
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 16px;
+        }
+
+        input {
+            width: 80%;
+        }
+
+        button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #resultado {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="contenedor">
+    <h1>¿Par o impar?</h1>
+    <p>Introduce un número entero:</p>
+
+    <input type="number" id="numero"
+           step="1" placeholder="Escribe un número">
+
+    <br>
+
+    <button onclick="comprobar()">Comprobar</button>
+
+    <p id="resultado"></p>
+</div>
+
+<script>
+  function comprobar() {
+    let numero = document.getElementById("numero").value;
+    let resultado = document.getElementById("resultado");
+
+    if (numero === "" || !Number.isSafeInteger(Number(numero))) {
+      resultado.textContent =
+        "Introduce un número entero válido.";
+    } else if (Number(numero) % 2 === 0) {
+      resultado.textContent = "El número es PAR.";
+    } else {
+      resultado.textContent = "El número es IMPAR.";
+    }
+  }
+</script>
+</body>
+</html>

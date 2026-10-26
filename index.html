@@ -16,8 +16,7 @@
         .contenedor {
             background: white;
             max-width: 600px;
-            margin: auto;
-            margin-top: 30px;
+            margin: 30px auto auto;
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 12px #0004;
@@ -199,7 +198,7 @@
       resultado.textContent =
         "Introduce un día válido.";
     } else {
-      d = Number(numero);
+      let d = Number(numero);
       if (d >= 1 && d <= 5) {
         resultado.textContent = "Día entre semana";
       } else if (d >= 6 && d <= 7) {
@@ -218,7 +217,7 @@
       resultado.textContent =
         "Introduce horas válidas.";
     } else {
-      horas = Number(numero);
+      let horas = Number(numero);
       if (horas > 0 && horas <= 1) {
         resultado.textContent = "Es costo es de $20.00";
       } else if (horas > 1 && horas <= 3) {
@@ -243,9 +242,9 @@
       resultado.textContent =
         "Introduce datos válidos.";
     } else {
-      a = Number(numeroA);
-      b = Number(numeroB);
-      op = Number(operacion);
+      let a = Number(numeroA);
+      let b = Number(numeroB);
+      let op = Number(operacion);
 
       switch (op) {
         case 1:
@@ -277,9 +276,9 @@
       resultado.textContent =
         "Introduce datos válidos.";
     } else {
-      a = Number(ladoA);
-      b = Number(ladoB);
-      c = Number(ladoC);
+      let a = Number(ladoA);
+      let b = Number(ladoB);
+      let c = Number(ladoC);
 
       if (a <= 0 || b <= 0 || c <= 0) {
         resultado.textContent =

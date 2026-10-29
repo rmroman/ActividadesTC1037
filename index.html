@@ -236,8 +236,8 @@
     let operacion = document.getElementById("operacion").value;
     let resultado = document.getElementById("resultadoCalculadora");
 
-    if (numeroA === "" || !Number.isSafeInteger(Number(numeroA)) ||
-      numeroB === "" || !Number.isSafeInteger(Number(numeroB)) ||
+    if (numeroA === "" ||
+      numeroB === "" ||
       operacion === "") {
       resultado.textContent =
         "Introduce datos válidos.";
